@@ -29,3 +29,21 @@ DELETE P1 FROM Person P1, Person P2
     WHERE P1.Email = P2.Email and P1.Id > P2.Id;
 
 
+# Second highest salary 
+SELECT Salary FROM Employee
+	WHERE Id IN 
+	(SELECT Id FROM Employee ORDER BY Salary DESC LIMIT 2) 
+	ORDER BY Salary LIMIT 1;
+
+
+# MAX( all salary < MAX() )
+SELECT MAX(Salary) FROM Employee 
+    WHERE Salary < (SELECT MAX(Salary) FROM Employee);
+
+
+
+
+
+
+
+

@@ -41,6 +41,10 @@ SELECT MAX(Salary) FROM Employee
     WHERE Salary < (SELECT MAX(Salary) FROM Employee);
 
 
+# UNION SELECT NULL
+SELECT * FROM 
+	(SELECT `Salary` FROM `Employee` WHERE `Salary` != (SELECT MAX(`Salary`) FROM `Employee`) UNION SELECT NULL ) 
+	AS `SecondHighestSalary` ORDER BY `Salary` DESC LIMIT 1;
 
 
 

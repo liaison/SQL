@@ -1,3 +1,14 @@
+# Find employee who earns more than their manager.
+# Employee table:  Id, Name, Salary, ManagerId
+SELECT E1.Name FROM Employee AS E1, Employee AS E2 WHERE E1.ManagerId = E2.Id AND E1.Salary > E2.Salary;
+
+# Find the persons who earn the most in each department.
+# Note: multiple persons could earn the same max salary in a department.
+SELECT E.Name, E.Salary, D.Name FROM
+    (SELECT MAX(Salary) AS MAX_SALARY, DepartmentId FROM Employee GROUP BY DepartmentId) AS Q1,
+    Employee AS E, Department AS D
+WHERE E.DepartmentId = Q1.DepartmentId AND E.Salary = Q1.MAX_SALARY AND D.Id = E.DepartmentId;
+
 
 # Find the customers who have never ordered anything yet.
 SELECT Name FROM Customers

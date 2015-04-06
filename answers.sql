@@ -55,6 +55,13 @@ SELECT Q4.Score, Q3.Rank FROM
 	 WHERE Q1.Score <= Q2.Score GROUP BY Q1.Score) AS Q3, Scores AS Q4
 WHERE Q4.Score=Q3.Score ORDER BY Q4.Score DESC;
 
+# One can SELECT from the result set of another SELECT query, and rename the attribute name in the result set.
+# One can see the result set from a SELECT query as a table.
+# One can SELECT simultaneously from multiple tables/result set.
+# To get the desired result, one refine the SELECT result with another SELECT and keep on refining/filtering/calculating until getting the final result.
+
+
+
 
 
 

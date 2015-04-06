@@ -40,6 +40,16 @@ SELECT Salary FROM Employee
 SELECT MAX(Salary) FROM Employee 
     WHERE Salary < (SELECT MAX(Salary) FROM Employee);
 
+# With IFNULL(), LIMIT row_count OFFSET offset
+SELECT IFNULL(
+	(SELECT distinct Salary AS SecondHighestSalary FROM Employee ORDER BY Salary DESC LIMIT 1 OFFSET 1),
+	NULL);
+
+# IFNULL(), GROUP BY, LIMIT, OFFSET
+SELECT IFNULL(
+    (SELECT Salary FROM Employee GROUP BY Salary ORDER BY Salary DESC LIMIT 1 OFFSET 1),
+    NULL);
+
 
 # UNION SELECT NULL
 SELECT * FROM 
@@ -59,6 +69,7 @@ WHERE Q4.Score=Q3.Score ORDER BY Q4.Score DESC;
 # One can see the result set from a SELECT query as a table.
 # One can SELECT simultaneously from multiple tables/result set.
 # To get the desired result, one refine the SELECT result with another SELECT and keep on refining/filtering/calculating until getting the final result.
+
 
 
 

@@ -47,6 +47,15 @@ SELECT * FROM
 	AS `SecondHighestSalary` ORDER BY `Salary` DESC LIMIT 1;
 
 
+# Ranking of scores
+SELECT Q4.Score, Q3.Rank FROM
+	(SELECT Q1.Score as Score, count(*) as Rank FROM
+		(SELECT DISTINCT Score from Scores) AS Q1,
+		(SELECT DISTINCT Score from Scores) AS Q2
+	 WHERE Q1.Score <= Q2.Score GROUP BY Q1.Score) AS Q3, Scores AS Q4
+WHERE Q4.Score=Q3.Score ORDER BY Q4.Score DESC;
+
+
 
 
 

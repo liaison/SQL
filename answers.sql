@@ -71,8 +71,17 @@ WHERE Q4.Score=Q3.Score ORDER BY Q4.Score DESC;
 # To get the desired result, one refine the SELECT result with another SELECT and keep on refining/filtering/calculating until getting the final result.
 
 
+# Select the Nth highest salary
+SELECT Q3.Salary FROM
+	(SELECT Q1.Salary, count(*) AS Rank FROM 
+	  (SELECT Salary FROM Employee GROUP BY Salary) AS Q1,
+	  (SELECT Salary FROM Employee GROUP BY Salary) AS Q2
+	WHERE Q1.Salary <= Q2.Salary GROUP BY Q1.Salary) AS Q3
+WHERE Q3.Rank=N
 
-
+# With ORDER BY, LIMIT 1 OFFSET N
+SET N=N-1;
+SELECT DISTINCT Salary from Employee order by Salary DESC LIMIT 1 OFFSET 1;
 
 
 

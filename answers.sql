@@ -95,6 +95,11 @@ SET N=N-1;
 SELECT DISTINCT Salary from Employee order by Salary DESC LIMIT 1 OFFSET 1;
 
 
+# Two inners joins with the same tables
+# A number that appears consecutively at least 3 times.
+SELECT DISTINCT L1.Num FROM Logs AS L1, Logs AS L2, Logs AS L3
+WHERE L2.Id = L1.Id + 1 AND L3.Id = L1.Id + 2 AND L1.Num = L2.Num AND L1.Num = L3.Num;
+
 
 
 
